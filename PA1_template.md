@@ -51,7 +51,7 @@ gg <- ggplot(data = daysteps, aes(x=date,y=steps)) + geom_bar(stat = 'identity')
 print(gg)
 ```
 
-![](figures/histogram steps by day-1.png)<!-- -->
+![histogram steps by day](figures/histogram steps by day-1.png)<!-- -->
 
 
 * Calculate and report the mean and median of the total number of steps taken per day
