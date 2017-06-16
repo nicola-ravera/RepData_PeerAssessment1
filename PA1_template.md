@@ -43,14 +43,23 @@ summary(activities)
 daysteps <- setNames(aggregate(activities$steps,by=list(activities$date),sum,na.rm=T),c("date","steps"))
 ```
 
-*  Make a histogram of the total number of steps taken each day
+*  Make a histogram of the total number of steps taken each day  
 
 ```r
-gg <- ggplot(data = daysteps, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Total daily number of steps ")
+gg <- ggplot(data=daysteps, aes(steps)) + geom_histogram(bins = 5,alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps")
 print(gg)
 ```
 
 ![](figures/histogram_steps_by_day-1.png)<!-- -->
+
+**Barplot**
+
+```r
+gg <- ggplot(data = daysteps, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Barplot - Total daily number of steps")
+print(gg)
+```
+
+![](figures/barplot_steps_by_day-1.png)<!-- -->
 
 
 * Calculate and report the mean and median of the total number of steps taken per day
@@ -105,16 +114,23 @@ for(i in seq_along(activitiesNoNA$steps)){
 }
 ```
 
-* Make a histogram of the total number of steps taken each day. 
-
+* Make a histogram of the total number of steps taken each day.  
 
 ```r
 daystepsNoNA <- aggregate(steps ~ date, sum, data=activitiesNoNA, na.rm=T)
-gg <- ggplot(data = daystepsNoNA, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Total daily number of steps - with imputed values")
+gg <- ggplot(data=daystepsNoNA, aes(steps)) + geom_histogram(bins = 5,alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps ")
 print(gg)
 ```
 
 ![](figures/histogram_steps_per_day_with_imputed_values-1.png)<!-- -->
+
+
+```r
+gg <- ggplot(data = daystepsNoNA, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Barplot - Total daily number of steps - with imputed values")
+print(gg)
+```
+
+![](figures/barplot_steps_per_day_with_imputed_values-1.png)<!-- -->
 
 * Calculate and report the mean and median total number of steps taken per day
 
@@ -129,6 +145,7 @@ The values differ from the first part of assignment respectively: mean by **1411
 
 
 * What is the impact of imputing missing data on the estimates of the total daily number of steps?
+Days impacted by imputing missing data  
 
 ```r
 df <-setNames(cbind(daysteps,daystepsNoNA$steps),c("date","stepswNA","stepswoNA")) 
