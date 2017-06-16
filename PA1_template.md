@@ -46,7 +46,7 @@ daysteps <- setNames(aggregate(activities$steps,by=list(activities$date),sum,na.
 *  Make a histogram of the total number of steps taken each day  
 
 ```r
-gg <- ggplot(data=daysteps, aes(steps)) + geom_histogram(bins = 5,alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps")
+gg <- ggplot(data=daysteps, aes(steps)) + geom_histogram(breaks=seq(0, 25000, by=5000),alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps")
 print(gg)
 ```
 
@@ -118,7 +118,7 @@ for(i in seq_along(activitiesNoNA$steps)){
 
 ```r
 daystepsNoNA <- aggregate(steps ~ date, sum, data=activitiesNoNA, na.rm=T)
-gg <- ggplot(data=daystepsNoNA, aes(steps)) + geom_histogram(bins = 5,alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps ")
+gg <- ggplot(data=daystepsNoNA, aes(steps)) + geom_histogram(breaks=seq(0, 25000, by=5000),alpha=.5,col="white") + labs(title = "Histogram - Total daily number of steps ")
 print(gg)
 ```
 
