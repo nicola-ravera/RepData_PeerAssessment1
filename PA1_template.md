@@ -18,7 +18,6 @@ Then loading data and converting date , with data summary
 unzip("./activity.zip")
 activities <- read.csv("./activity.csv")
 
-# cast character date into Date
 activities$date <- as.Date (activities$date,"%Y-%m-%d")
 summary(activities)
 ```
@@ -51,7 +50,7 @@ gg <- ggplot(data = daysteps, aes(x=date,y=steps)) + geom_bar(stat = 'identity')
 print(gg)
 ```
 
-![histogram steps by day](figures/histogram steps by day-1.png)<!-- -->
+![](figures/histogram steps by day-1.png)<!-- -->
 
 
 * Calculate and report the mean and median of the total number of steps taken per day
@@ -72,7 +71,7 @@ gg <- ggplot(data = dayintervals, aes(x=interval,y=steps)) + geom_line() + labs(
 print(gg)
 ```
 
-![](figures/plot average daily activitiy pattern-1.png)<!-- -->
+![pippo](figures/plot average daily activitiy pattern-1.png)
 
 
 
