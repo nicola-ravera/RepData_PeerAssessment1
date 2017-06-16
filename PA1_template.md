@@ -133,7 +133,7 @@ The values differ from the first part of assignment respectively: mean by **1411
 ```r
 df <-setNames(cbind(daysteps,daystepsNoNA$steps),c("date","stepswNA","stepswoNA")) 
 
-kable(subset(df,(stepswoNA-stepswNA)>0),caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data"), format = 'markdown') 
+kable(subset(df,(stepswoNA-stepswNA)>0), format = 'markdown',caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data")) 
 ```
 
 

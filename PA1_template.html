@@ -130,7 +130,6 @@ library(knitr)</code></pre>
 <pre class="r"><code>unzip(&quot;./activity.zip&quot;)
 activities &lt;- read.csv(&quot;./activity.csv&quot;)
 
-# cast character date into Date
 activities$date &lt;- as.Date (activities$date,&quot;%Y-%m-%d&quot;)
 summary(activities)</code></pre>
 <pre><code>##      steps             date               interval     
@@ -212,12 +211,11 @@ The values differ from the first part of assignment respectively: mean by <stron
 </ul>
 <pre class="r"><code>df &lt;-setNames(cbind(daysteps,daystepsNoNA$steps),c(&quot;date&quot;,&quot;stepswNA&quot;,&quot;stepswoNA&quot;)) 
 
-kable(subset(df,(stepswoNA-stepswNA)&gt;0),caption=&quot;Days impacted by imputing missing data&quot;,col.names = c(&quot;date&quot;,&quot;total steps with NA&quot;,&quot;total steps after imputing missing data&quot;)) </code></pre>
+kable(subset(df,(stepswoNA-stepswNA)&gt;0), format = 'markdown',caption=&quot;Days impacted by imputing missing data&quot;,col.names = c(&quot;date&quot;,&quot;total steps with NA&quot;,&quot;total steps after imputing missing data&quot;)) </code></pre>
 <table>
-<caption>Days impacted by imputing missing data</caption>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">date</th>
 <th align="right">total steps with NA</th>
 <th align="right">total steps after imputing missing data</th>
@@ -225,49 +223,49 @@ kable(subset(df,(stepswoNA-stepswNA)&gt;0),caption=&quot;Days impacted by imputi
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td align="left">1</td>
 <td align="left">2012-10-01</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td>8</td>
+<td align="left">8</td>
 <td align="left">2012-10-08</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="odd">
-<td>32</td>
+<td align="left">32</td>
 <td align="left">2012-11-01</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td>35</td>
+<td align="left">35</td>
 <td align="left">2012-11-04</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="odd">
-<td>40</td>
+<td align="left">40</td>
 <td align="left">2012-11-09</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td>41</td>
+<td align="left">41</td>
 <td align="left">2012-11-10</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="odd">
-<td>45</td>
+<td align="left">45</td>
 <td align="left">2012-11-14</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td>61</td>
+<td align="left">61</td>
 <td align="left">2012-11-30</td>
 <td align="right">0</td>
 <td align="right">10766.19</td>

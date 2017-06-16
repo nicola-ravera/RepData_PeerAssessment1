@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ## Loading and preprocessing the data
 
 First load libraries
-```{r libraries, warning=F}
+```{r libraries, warning=FALSE}
 library(scales)
 library(ggplot2)
 library(knitr)
@@ -25,7 +25,6 @@ Then loading data and converting date , with data summary
 unzip("./activity.zip")
 activities <- read.csv("./activity.csv")
 
-# cast character date into Date
 activities$date <- as.Date (activities$date,"%Y-%m-%d")
 summary(activities)
 
@@ -36,12 +35,12 @@ summary(activities)
 ## What is mean total number of steps taken per day?
 
 * Calculate the total number of steps taken per day
-```{r calculate total step per day}
+```{r calculate_total_step_per_day}
 daysteps <- setNames(aggregate(activities$steps,by=list(activities$date),sum,na.rm=T),c("date","steps"))
 ```
 
 *  Make a histogram of the total number of steps taken each day
-```{r histogram steps by day}
+```{r histogram_steps_by_day}
 gg <- ggplot(data = daysteps, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Total daily number of steps ")
 print(gg)
                                                               
@@ -58,7 +57,7 @@ The mean and median of the total number of steps taken per day are respectively 
 
 ## What is the average daily activity pattern?
 
-```{r plot average daily activitiy pattern}
+```{r plot_average_daily_activitiy_pattern}
 dayintervals <- aggregate(steps ~ interval, mean, data=activities, na.rm=T)
 
 gg <- ggplot(data = dayintervals, aes(x=interval,y=steps)) + geom_line() + labs(title = "average daily activity pattern - steps per interval")
@@ -97,7 +96,7 @@ for(i in seq_along(activitiesNoNA$steps)){
 
 * Make a histogram of the total number of steps taken each day. 
 
-```{r histogram steps per day with imputed values}
+```{r histogram_steps_per_day_with_imputed_values}
 daystepsNoNA <- aggregate(steps ~ date, sum, data=activitiesNoNA, na.rm=T)
 gg <- ggplot(data = daystepsNoNA, aes(x=date,y=steps)) + geom_bar(stat = 'identity') + scale_x_date(date_breaks = '1 week',date_labels = "%b %d") + labs(title = "Total daily number of steps - with imputed values")
 print(gg)
@@ -116,10 +115,11 @@ The values differ from the first part of assignment respectively: mean by **`r f
 
 
 * What is the impact of imputing missing data on the estimates of the total daily number of steps?
+Days impacted by imputing missing data  
 ```{r table, results="asis" }
 df <-setNames(cbind(daysteps,daystepsNoNA$steps),c("date","stepswNA","stepswoNA")) 
 
-kable(subset(df,(stepswoNA-stepswNA)>0),caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data")) 
+kable(subset(df,(stepswoNA-stepswNA)>0), format = 'markdown',caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data")) 
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -134,7 +134,7 @@ activitiesNoNA$daytype <- factor(ifelse(as.POSIXlt(activitiesNoNA$date)$wday %in
 
 * Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
-```{r panel plot on daytype}
+```{r panel_plot_on_daytype}
 datedf <- aggregate(steps ~  interval + daytype , FUN = mean, data=activitiesNoNA)
 gg <- ggplot(data=datedf, aes(x=interval,y=steps))+geom_line()+ facet_grid(daytype~.)
 print(gg)
