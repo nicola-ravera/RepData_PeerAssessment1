@@ -114,7 +114,7 @@ gg <- ggplot(data = daystepsNoNA, aes(x=date,y=steps)) + geom_bar(stat = 'identi
 print(gg)
 ```
 
-![](figures/histogram steps per day with imputed values-1.png)<!-- -->
+![](figures/histogram_steps_per_day_with_imputed_values-1.png)<!-- -->
 
 * Calculate and report the mean and median total number of steps taken per day
 
@@ -133,23 +133,21 @@ The values differ from the first part of assignment respectively: mean by **1411
 ```r
 df <-setNames(cbind(daysteps,daystepsNoNA$steps),c("date","stepswNA","stepswoNA")) 
 
-kable(subset(df,(stepswoNA-stepswNA)>0),caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data")) 
+kable(subset(df,(stepswoNA-stepswNA)>0),caption="Days impacted by imputing missing data",col.names = c("date","total steps with NA","total steps after imputing missing data"), format = 'markdown') 
 ```
 
 
 
-Table: Days impacted by imputing missing data
-
-     date          total steps with NA   total steps after imputing missing data
----  -----------  --------------------  ----------------------------------------
-1    2012-10-01                      0                                  10766.19
-8    2012-10-08                      0                                  10766.19
-32   2012-11-01                      0                                  10766.19
-35   2012-11-04                      0                                  10766.19
-40   2012-11-09                      0                                  10766.19
-41   2012-11-10                      0                                  10766.19
-45   2012-11-14                      0                                  10766.19
-61   2012-11-30                      0                                  10766.19
+|   |date       | total steps with NA| total steps after imputing missing data|
+|:--|:----------|-------------------:|---------------------------------------:|
+|1  |2012-10-01 |                   0|                                10766.19|
+|8  |2012-10-08 |                   0|                                10766.19|
+|32 |2012-11-01 |                   0|                                10766.19|
+|35 |2012-11-04 |                   0|                                10766.19|
+|40 |2012-11-09 |                   0|                                10766.19|
+|41 |2012-11-10 |                   0|                                10766.19|
+|45 |2012-11-14 |                   0|                                10766.19|
+|61 |2012-11-30 |                   0|                                10766.19|
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -171,4 +169,4 @@ gg <- ggplot(data=datedf, aes(x=interval,y=steps))+geom_line()+ facet_grid(dayty
 print(gg)
 ```
 
-![](figures/panel plot on daytype-1.png)<!-- -->
+![](figures/panel_plot_on_daytype-1.png)<!-- -->
